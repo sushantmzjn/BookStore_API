@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/sushantmzjn/BookStore_API#readme",
   "dependencies": {
+    "eslint": "^6.7.2",
     "nodemon": "^2.0.1"
   }
 }
