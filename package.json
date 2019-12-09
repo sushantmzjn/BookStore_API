@@ -1,0 +1,19 @@
+{
+  "name": "book-store",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sushantmzjn/BookStore_API.git"
+  },
+  "author": "sushant",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sushantmzjn/BookStore_API/issues"
+  },
+  "homepage": "https://github.com/sushantmzjn/BookStore_API#readme"
+}
