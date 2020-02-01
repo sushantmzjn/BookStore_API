@@ -14,9 +14,10 @@ router.post('/signup', (req, res, next) => {
 		return next(err);
         }
         User.create({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
+            fullName: req.body.fullName,
+            address: req.body.address,
             username: req.body.username,
+            gender:req.body.gender,
             password: hash,
             image: req.body.image
         }).then((user) => {
