@@ -6,9 +6,9 @@ const categoryRouter = require('./routes/category');
 const userRouter = require('./routes/users');
 const dotenv = require('dotenv').config();
 const uploadRouter = require('./routes/upload');
+const bookRouter = require('./routes/books');
 const auth = require('./auth');
 const cors = require('cors');
-
 
 const app = express();
 app.use(morgan('tiny'));
@@ -27,8 +27,10 @@ mongoose.connect(process.env.URL, { useNewUrlParser: true, useUnifiedTopology: t
 app.use('/users', userRouter);
 app.use('/upload', uploadRouter);
 app.use(auth.verifyUser);
+app.use('/book',bookRouter);
 app.use('/categories', categoryRouter);
 app.use('/tasks', taskRouter);
+
 
 // error handler
 app.use((err, req, res, next) => {
