@@ -1,8 +1,9 @@
 const express = require("express");
 const Book = require("../models/books");
 const router = express.Router();
+const auth = require('../auth');
 
-router.route("/")
+router.route("/", auth.verifyAdmin)
     .post((req, res, next) => {
         let book = new Book(req.body);
         console.log(book)

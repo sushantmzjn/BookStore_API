@@ -10,18 +10,20 @@ const bookSchema = new mongoose.Schema({
         required: true
     },
     price: {
-        type: String     
+        type: String,
+        required: true
     },
     image: {
-        type: String
+        type: String,
+        required: false
     },
-    categories:{
-        type:String,
-        require: true
+    categories: {
+        type: String,
+        required: true
     },
-    buyer:{
+    buyer: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: "Admin"
     }
 });
 
