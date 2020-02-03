@@ -7,6 +7,7 @@ const userRouter = require('./routes/users');
 const dotenv = require('dotenv').config();
 const uploadRouter = require('./routes/upload');
 const bookRouter = require('./routes/books');
+const adminRouter = require('./routes/admin');
 const auth = require('./auth');
 const cors = require('cors');
 
@@ -25,11 +26,13 @@ mongoose.connect(process.env.URL, { useNewUrlParser: true, useUnifiedTopology: t
 
 // Routes
 app.use('/users', userRouter);
+app.use('/admin', adminRouter);
 app.use('/upload', uploadRouter);
 app.use(auth.verifyUser);
 app.use('/book',bookRouter);
 app.use('/categories', categoryRouter);
 app.use('/tasks', taskRouter);
+
 
 
 // error handler
