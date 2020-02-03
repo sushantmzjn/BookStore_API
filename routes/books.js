@@ -14,4 +14,16 @@ router.route("/")
             }).catch(next);
     });
 
+router.route("/:categories")
+.get((req, res, next) => {
+    Book.find({categories: req.params.categories})
+    .then((books) => {
+        console.log(books);
+        res.json(books);
+    })
+    .catch((err) => {
+        next(err)
+    });
+})
+
 module.exports = router;
