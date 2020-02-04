@@ -12,5 +12,15 @@ router.route("/")
                 res.statusCode = 201;
                 res.json(bookorder);
             }).catch(next);
-    });
+    })
+    .get((req,res, next) =>{
+        Bookorder.find({buyer: req.user._id})
+        .then((bookorder) => {
+            console.log(bookorder);
+            res.json(bookorder);
+        })
+        .catch((err) =>{
+            next(err);
+        })
+    })
 module.exports = router;
