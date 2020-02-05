@@ -9,6 +9,7 @@ const uploadRouter = require('./routes/upload');
 const bookRouter = require('./routes/books');
 const adminRouter = require('./routes/admin');
 const bookorderRouter = require('./routes/bookorder')
+const cartRouter = require('./routes/cart')
 const auth = require('./auth');
 const cors = require('cors');
 
@@ -32,8 +33,10 @@ app.use('/upload', uploadRouter);
 app.use(auth.verifyUser);
 app.use('/book',bookRouter);
 app.use('/bookorder', bookorderRouter);
+app.use('/cart',cartRouter);
 app.use('/categories', categoryRouter);
 app.use('/tasks', taskRouter);
+
 
 
 
