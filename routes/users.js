@@ -9,15 +9,15 @@ router.post('/signup', (req, res, next) => {
     let password = req.body.password;
     bcrypt.hash(password, 10, function (err, hash) {
         if (err) {
-            let err =  new Error('Could not hash!');
-		err.status = 500;
-		return next(err);
+            let err = new Error('Could not hash!');
+            err.status = 500;
+            return next(err);
         }
         User.create({
             fullName: req.body.fullName,
             address: req.body.address,
             username: req.body.username,
-            gender:req.body.gender,
+            gender: req.body.gender,
             password: hash,
             image: req.body.image
         }).then((user) => {
