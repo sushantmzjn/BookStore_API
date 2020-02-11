@@ -13,18 +13,19 @@ router.route("/")
                 res.json(cart);
             }).catch(next);
     })
-    .get((req,res, next) =>{
-        Cart.find({buyer: req.user._id})
-        .then((cart) => {
-            console.log(cart);
-            res.json(cart);
-        })
-        .catch((err) =>{
-            next(err);
-        })
+    .get((req, res, next) => {
+        Cart.find({ buyer: req.user._id })
+            .then((cart) => {
+                console.log(cart);
+                res.json(cart);
+            })
+            .catch((err) => {
+                next(err);
+            })
     })
+// router.route("/id")
     .delete((req, res, next) => {
-        Cart.findOneAndDelete({ buyer: req.user._id })
+        Cart.findOneAndDelete({ buyer: req.user._id})
             .then((cart) => {
                 if (cart == null) throw new Error("product not found");
                 res.json(cart);
