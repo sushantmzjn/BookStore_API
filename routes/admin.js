@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Admin = require('../models/admin');
+const User = require('../models/users')
 const router = express.Router();
 const auth = require('../auth');
 
@@ -9,9 +10,9 @@ router.post('/signupadmin', (req, res, next) => {
     let password = req.body.password;
     bcrypt.hash(password, 10, function (err, hash) {
         if (err) {
-            let err =  new Error('Could not hash!');
-		err.status = 500;
-		return next(err);
+            let err = new Error('Could not hash!');
+            err.status = 500;
+            return next(err);
         }
         Admin.create({
             name: req.body.name,
@@ -45,4 +46,22 @@ router.post('/loginadmin', (req, res, next) => {
         }).catch(next);
 })
 
+router.get("/userlist", auth.verifyAdmin, (req, res, next) => {
+    User.find()
+        .then((users) => {
+            console.log(users);
+            res.json(users)
+        })
+        .catch((err) => {
+            next(err)
+        })
+})
+router.route("/userlist/:id")
+    .delete(auth.verifyAdmin, (req, res, next) => {
+        User.findOneAndDelete({ _id: req.params.id })
+            .then((users) => {
+                if (users == null) throw new Error("user not found");
+                res.json(users)
+            }).catch(next)
+    })
 module.exports = router;
