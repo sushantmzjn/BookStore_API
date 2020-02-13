@@ -47,4 +47,13 @@ router.route("/:id")
             }).catch(next)
     })
 
+    .put((req, res, next) => {
+        console.log(req.body);
+        Book.findOneAndUpdate({ _id: req.params.id }, {$set: req.body}, {new:true})
+        .then((book) =>{
+            if(book == null) throw new Error("product not found");
+            res.json(book)
+        }).catch(next)
+    });
+
 module.exports = router;
