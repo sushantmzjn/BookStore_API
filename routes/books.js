@@ -15,15 +15,36 @@ router.route("/", auth.verifyAdmin)
     });
 
 router.route("/:categories")
-.get((req, res, next) => {
-    Book.find({categories: req.params.categories})
-    .then((books) => {
-        console.log(books);
-        res.json(books);
+    .get((req, res, next) => {
+        Book.find({ categories: req.params.categories })
+            .then((books) => {
+                console.log(books);
+                res.json(books);
+            })
+            .catch((err) => {
+                next(err)
+            });
     })
-    .catch((err) => {
-        next(err)
-    });
-})
+
+router.route("/", auth.verifyAdmin)
+    .get((req, res, next) => {
+        Book.find()
+            .then((books) => {
+                console.log(books);
+                res.json(books)
+            })
+            .catch((err) => {
+                next(err)
+            })
+    })
+
+router.route("/:id")
+    .delete(auth.verifyAdmin, (req, res, next) => {
+        Book.findOneAndDelete({ _id: req.params.id })
+            .then((books) => {
+                if (books == null) throw new Error("product not found");
+                res.json(books)
+            }).catch(next)
+    })
 
 module.exports = router;
