@@ -53,6 +53,7 @@ router.get('/me', auth.verifyUser, (req, res, next) => {
     res.json({ _id: req.user._id, fullName: req.user.fullName, address: req.user.address, username: req.user.username, gender: req.user.gender, image: req.user.image });
 });
 
+
 router.put('/updateuser', auth.verifyUser, (req, res, next) => {
     User.findByIdAndUpdate(req.user._id, { $set: req.body }, { new: true })
         .then((user) => {
