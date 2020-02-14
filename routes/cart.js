@@ -23,9 +23,10 @@ router.route("/")
                 next(err);
             })
     })
-// router.route("/id")
+router.route("/title")
     .delete((req, res, next) => {
-        Cart.findOneAndDelete({ buyer: req.user._id})
+        console.log(req.params);
+        Cart.findOneAndDelete({ buyer: req.user._id, title: req.params.title })
             .then((cart) => {
                 if (cart == null) throw new Error("product not found");
                 res.json(cart);
