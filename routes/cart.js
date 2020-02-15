@@ -32,4 +32,14 @@ router.route("/title")
                 res.json(cart);
             }).catch(next);
     })
+
+    router.route("/:id")
+    .delete((req, res, next) => {
+        console.log(req.params);
+        Cart.findOneAndDelete({ buyer: req.user._id, _id: req.params.id })
+            .then((cart) => {
+                if (cart == null) throw new Error("product not found");
+                res.json(cart);
+            }).catch(next);
+    })
 module.exports = router;
